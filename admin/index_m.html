@@ -22,9 +22,11 @@
         border-spacing: 0;
         border-image-width: 0;
     }
-	#values {
-		height: calc(100% - 230px);
+	.table-values-div {
+		height: calc(100% - 260px);
+		overflow: auto;
 	}
+
 </style>
 <script type="text/javascript">
 	
@@ -85,7 +87,14 @@
             if (settings.hasOwnProperty(key) && !Array.isArray(settings[key])) setValue(key, settings[key], onChange);
         }
 
-        values2table('values', devices, onChange);
+        values2table('values', devices, onChange, function () {
+			$('a[data-command="pair"]').on('click', function () {
+				console.log('PAIR ' + $(this).data('index'));
+			});
+			$('a[data-command="unpair"]').on('click', function () {
+				console.log('PAIR ' + $(this).data('index'));
+			});
+		});
 
         onChange(false);
     }
